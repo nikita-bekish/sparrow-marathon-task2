@@ -9,157 +9,19 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - Private types
+    
+    private struct Constants {
+        static let offset: CGFloat = 20
+    }
+    
     // MARK: - Private properties
     
-    private let thirdButton: AnimatableButton = {
-        var config = UIButton.Configuration.filled()
-        config.cornerStyle = .medium
-        config.image = UIImage(systemName: "arrow.forward.circle")
-        config.imagePlacement = .trailing
-        config.imagePadding = 8
-        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 14, bottom: 10, trailing: 14)
-        
-        let button = AnimatableButton()
-        button.setTitle("Third", for: .normal)
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            
-            config?.background.backgroundColor = button.tintAdjustmentMode == .dimmed ? .systemGray2 : .systemBlue
-            
-            switch button.tintAdjustmentMode {
-            case .normal:
-                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
-                    return .white
-                }
-                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
-                    var outgoing = incoming
-                    outgoing.foregroundColor = .white
-                    
-                    return outgoing
-                })
-            case .dimmed:
-                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
-                    return .systemGray3
-                }
-                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
-                    var outgoing = incoming
-                    outgoing.foregroundColor = .systemGray3
-                    
-                    return outgoing
-                })
-                
-            case .automatic:
-                break
-            @unknown default:
-                break
-            }
-            
-            button.configuration = config
-        }
-        
-        button.configuration = config
-        
-        return button
-    }()
+    private let firstButton = AnimatableButton(title: "First Button")
     
-    private let secondButton: AnimatableButton = {
-        var config = UIButton.Configuration.filled()
-        config.cornerStyle = .medium
-        config.image = UIImage(systemName: "arrow.forward.circle")
-        config.imagePlacement = .trailing
-        config.imagePadding = 8
-        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 14, bottom: 10, trailing: 14)
-        
-        
-        let button = AnimatableButton()
-        button.setTitle("Second Medium Button", for: .normal)
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            
-            config?.background.backgroundColor = button.tintAdjustmentMode == .dimmed ? .systemGray2 : .systemBlue
-            
-            switch button.tintAdjustmentMode {
-            case .normal:
-                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
-                    return .white
-                }
-                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
-                    var outgoing = incoming
-                    outgoing.foregroundColor = .white
-                    
-                    return outgoing
-                })
-            case .dimmed:
-                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
-                    return .systemGray3
-                }
-                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
-                    var outgoing = incoming
-                    outgoing.foregroundColor = .systemGray3
-                    
-                    return outgoing
-                })
-                
-            case .automatic:
-                break
-            @unknown default:
-                break
-            }
-            
-            button.configuration = config
-        }
-        button.configuration = config
-        return button
-    }()
-    
-    private let firstButton: AnimatableButton = {
-        var config = UIButton.Configuration.filled()
-        config.cornerStyle = .medium
-        config.image = UIImage(systemName: "arrow.forward.circle")
-        config.imagePlacement = .trailing
-        config.imagePadding = 8
-        config.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 14, bottom: 10, trailing: 14)
-        
-        let button = AnimatableButton()
-        button.setTitle("First Button", for: .normal)
-        button.configurationUpdateHandler = { button in
-            var config = button.configuration
-            
-            config?.background.backgroundColor = button.tintAdjustmentMode == .dimmed ? .systemGray2 : .systemBlue
-            
-            switch button.tintAdjustmentMode {
-            case .normal:
-                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
-                    return .white
-                }
-                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
-                    var outgoing = incoming
-                    outgoing.foregroundColor = .white
-                    
-                    return outgoing
-                })
-            case .dimmed:
-                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
-                    return .systemGray3
-                }
-                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
-                    var outgoing = incoming
-                    outgoing.foregroundColor = .systemGray3
-                    
-                    return outgoing
-                })
-                
-            case .automatic:
-                break
-            @unknown default:
-                break
-            }
-            
-            button.configuration = config
-        }
-        button.configuration = config
-        return button
-    }()
+    private let secondButton = AnimatableButton(title: "Second Medium Button")
+
+    private let thirdButton = AnimatableButton(title: "Third")
     
     // MARK: - UIViewController lifecycle
 
@@ -179,23 +41,20 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             firstButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            firstButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            firstButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.offset),
             
             secondButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            secondButton.topAnchor.constraint(equalTo: firstButton.bottomAnchor, constant: 20),
+            secondButton.topAnchor.constraint(equalTo: firstButton.bottomAnchor, constant: Constants.offset),
             
             thirdButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            thirdButton.topAnchor.constraint(equalTo: secondButton.bottomAnchor, constant: 20),
+            thirdButton.topAnchor.constraint(equalTo: secondButton.bottomAnchor, constant: Constants.offset),
         ])
         
-        thirdButton.addAction(UIAction(handler: { _ in
-            self.showBlankController()
-        }), for: .touchUpInside)
+        thirdButton.addTarget(self, action: #selector(showBlankController), for: .touchUpInside)
     }
     
     @objc private func showBlankController() {
         self.present(UINavigationController(rootViewController: BlankViewController()), animated: true)
     }
-    
 }
 

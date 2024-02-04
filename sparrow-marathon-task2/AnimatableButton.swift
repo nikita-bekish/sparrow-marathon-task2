@@ -8,8 +8,67 @@
 import UIKit
 
 final class AnimatableButton: UIButton {
-    var scaleDownAnimator = UIViewPropertyAnimator()
-    var scaleUpAnimator = UIViewPropertyAnimator()
+    
+    // MARK: - Private properties
+    
+    private var scaleDownAnimator = UIViewPropertyAnimator()
+    private var scaleUpAnimator = UIViewPropertyAnimator()
+    
+    // MARK: - Init
+        
+    init(title: String) {
+        super.init(frame: .zero)
+        
+        setTitle(title, for: .normal)
+        configuration = .filled()
+        configuration?.cornerStyle = .medium
+        configuration?.image = UIImage(systemName: "arrow.forward.circle")
+        configuration?.imagePlacement = .trailing
+        configuration?.imagePadding = 8
+        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 14, bottom: 10, trailing: 14)
+        
+        configurationUpdateHandler = { button in
+            var config = button.configuration
+            
+            config?.background.backgroundColor = button.tintAdjustmentMode == .dimmed ? .systemGray2 : .systemBlue
+            
+            switch button.tintAdjustmentMode {
+            case .normal:
+                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
+                    return .white
+                }
+                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
+                    var outgoing = incoming
+                    outgoing.foregroundColor = .white
+                    
+                    return outgoing
+                })
+            case .dimmed:
+                config?.imageColorTransformer = UIConfigurationColorTransformer { _ in
+                    return .systemGray3
+                }
+                config?.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ incoming in
+                    var outgoing = incoming
+                    outgoing.foregroundColor = .systemGray3
+                    
+                    return outgoing
+                })
+                
+            case .automatic:
+                break
+            @unknown default:
+                break
+            }
+            
+            button.configuration = config
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - UIButton touches
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
