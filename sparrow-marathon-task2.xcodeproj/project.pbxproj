@@ -13,6 +13,10 @@
 		B167DAE82B6F6FAA00478543 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B167DAE62B6F6FAA00478543 /* Main.storyboard */; };
 		B167DAEA2B6F6FAB00478543 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B167DAE92B6F6FAB00478543 /* Assets.xcassets */; };
 		B167DAED2B6F6FAB00478543 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B167DAEB2B6F6FAB00478543 /* LaunchScreen.storyboard */; };
+		B167DAF52B6F8DEC00478543 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167DAF42B6F8DEC00478543 /* Animatable.swift */; };
+		B167DAF72B6F8EE300478543 /* AnimatableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167DAF62B6F8EE300478543 /* AnimatableButton.swift */; };
+		B167DAF92B6F928200478543 /* AnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167DAF82B6F928200478543 /* AnimationFactory.swift */; };
+		B167DAFB2B6FAA7400478543 /* BlankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B167DAFA2B6FAA7400478543 /* BlankViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		B167DAE92B6F6FAB00478543 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B167DAEC2B6F6FAB00478543 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B167DAEE2B6F6FAB00478543 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B167DAF42B6F8DEC00478543 /* Animatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
+		B167DAF62B6F8EE300478543 /* AnimatableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableButton.swift; sourceTree = "<group>"; };
+		B167DAF82B6F928200478543 /* AnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFactory.swift; sourceTree = "<group>"; };
+		B167DAFA2B6FAA7400478543 /* BlankViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				B167DAE92B6F6FAB00478543 /* Assets.xcassets */,
 				B167DAEB2B6F6FAB00478543 /* LaunchScreen.storyboard */,
 				B167DAEE2B6F6FAB00478543 /* Info.plist */,
+				B167DAF42B6F8DEC00478543 /* Animatable.swift */,
+				B167DAF62B6F8EE300478543 /* AnimatableButton.swift */,
+				B167DAF82B6F928200478543 /* AnimationFactory.swift */,
+				B167DAFA2B6FAA7400478543 /* BlankViewController.swift */,
 			);
 			path = "sparrow-marathon-task2";
 			sourceTree = "<group>";
@@ -139,8 +151,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B167DAE52B6F6FAA00478543 /* ViewController.swift in Sources */,
+				B167DAF72B6F8EE300478543 /* AnimatableButton.swift in Sources */,
+				B167DAF52B6F8DEC00478543 /* Animatable.swift in Sources */,
+				B167DAFB2B6FAA7400478543 /* BlankViewController.swift in Sources */,
 				B167DAE12B6F6FAA00478543 /* AppDelegate.swift in Sources */,
 				B167DAE32B6F6FAA00478543 /* SceneDelegate.swift in Sources */,
+				B167DAF92B6F928200478543 /* AnimationFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
